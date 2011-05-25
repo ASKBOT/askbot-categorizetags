@@ -1,0 +1,20 @@
+.ab-menu { background: #fff; border: 1px solid #aaa; }
+.ab-menu input { width: auto;}
+.tag-menu input, .tag-menu p { margin: 0; padding: 0}
+ul.ab-menu { list-style: none; }
+li.menu-item, .tag-category { white-space: nowrap; padding: 0 5px 0 0; }
+.tag-categorizer span.delete-icon { display: inline; float: none; vertical-align: middle; }
+
+.adder-icon, .go-right-icon {
+    padding-left: 13px;
+}
+.go-right-icon {
+    vertical-align: middle;
+    background: url(go-right.png) no-repeat;
+}
+span.adder-icon {
+    background: url(list-add-14-gray.png) no-repeat;
+}
+span.adder-icon:hover {
+    background: url(list-add-14-blue.png) no-repeat;
+}
