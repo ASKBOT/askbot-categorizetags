@@ -4,7 +4,7 @@ askbot askbot url configuraion file
 from django.conf.urls.defaults import url, patterns
 from django.conf.urls.defaults import handler500, handler404
 from django.contrib import admin
-from classifytags import views
+from categorizetags import views
 
 admin.autodiscover()
 urlpatterns = patterns('',

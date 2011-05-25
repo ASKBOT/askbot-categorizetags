@@ -17,8 +17,8 @@ from django.utils.translation import ugettext as _
 
 from django.conf import settings as settings
 from askbot.models import Tag
-from classifytags.utils import CategoriesApiTokenGenerator
-from classifytags.models import generate_tree
+from categorizetags.utils import CategoriesApiTokenGenerator
+from categorizetags.models import generate_tree
 
 
 def admin_ajax_post(view_func):

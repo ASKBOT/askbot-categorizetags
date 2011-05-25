@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import sys
 
 setup(
-    name = "classifytags",
+    name = "categorizetags",
     version = '0.0.1',
     description = 'A Django application created for askbot project to categorize tags',
     packages = find_packages(),
@@ -12,7 +12,7 @@ setup(
     author_email = 'evgeny.fadeev@gmail.com',
     license = 'BSD License',
     keywords = 'follow, database, django',
-    url = 'https://github.com/ASKBOT/django-classifytags',
+    url = 'https://github.com/ASKBOT/django-categorizetags',
     install_requires = ('django-mptt', 'django-categories',),
     include_package_data = True,
     classifiers = [
@@ -28,6 +28,6 @@ setup(
         'Programming Language :: JavaScript',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
     ],
-    long_description = """The ``classifytags` django app allows to categorize
+    long_description = """The ``categorizetags` django app allows to categorize
 tags in askbot forum, the app is only experimental."""
 )
