@@ -1731,6 +1731,8 @@ DropDown.prototype.stopClosing = function(){
  */
 DropDown.prototype.reset = function(){
     if (this._element){
+        this._element.unbind('mouseleave');
+        this._element.unbind('mousenter');
         this._element.hide();
         if (this._content){
             this.getContent().dispose();
