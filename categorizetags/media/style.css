@@ -4,7 +4,10 @@
     border: 1px solid #aaa;
     padding: 0 5px;
 }
-.tag-menu {padding-bottom: 5px}
+.tag-menu {
+    padding-bottom: 5px;
+    padding-top: 3px;
+}
 .ab-menu input { width: auto;}
 .ab-menu a.edit { padding: 3px; }
 .tag-menu input, .tag-menu p { margin: 0; padding: 0}
