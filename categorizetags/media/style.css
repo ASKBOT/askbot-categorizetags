@@ -1,4 +1,5 @@
-.ab-menu { background: #fff; border: 1px solid #aaa; }
+#ab-drop-down { position: absolute; }
+.ab-menu, .tag-menu { background: #fff; border: 1px solid #aaa; }
 .ab-menu input { width: auto;}
 .tag-menu input, .tag-menu p { margin: 0; padding: 0}
 ul.ab-menu { list-style: none; }
