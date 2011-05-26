@@ -2,7 +2,7 @@
 .ab-menu, .tag-menu { 
     background: #fff;
     border: 1px solid #aaa;
-    padding: 0 5px 0 0;
+    padding: 0 0 0 5px;
 }
 .tag-menu {
     padding-bottom: 5px;
