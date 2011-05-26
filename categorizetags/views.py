@@ -19,7 +19,8 @@ from django.conf import settings as settings
 from categorizetags.utils import CategoriesApiTokenGenerator
 from categorizetags.models import generate_tree
 
-TAG = __import__(settings.TAG_MODEL)
+tmp = __import__(settings.TAG_MODEL_MODULE, globals(), locals(), ['Tag'], -1)
+TAG = tmp.Tag
 
 def admin_ajax_post(view_func):
     """
