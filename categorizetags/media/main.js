@@ -2400,9 +2400,6 @@ MenuItemAdder.prototype.startAddingItem = function(){
             me.setState('IDLE');
             parent_menu.unfreeze();
         },
-        EDIT: function(){
-            parent_menu.closeChildren();
-        }
     });
     menu_item.setContent(content);
 
@@ -2724,6 +2721,7 @@ Menu.prototype.initStateTransitionEventHandlers = function(){
     this.setStateTransitionEventHandlers({
         EDIT: function(){
             me.stopEditingAllItems();
+            me.closeChildren();
             me.freeze();
         },
         DISPLAY: function(){
