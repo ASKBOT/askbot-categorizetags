@@ -1,7 +1,7 @@
 """Template context processor for askbot's categorizetags app
 """
 
-def application_settings(request):
+def categorizetags_context(request):
     """The context processor function"""
     from django.utils import simplejson
     from categorizetags.models import generate_tree
