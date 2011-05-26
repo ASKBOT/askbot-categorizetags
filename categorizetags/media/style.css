@@ -11,7 +11,9 @@
 .ab-menu input { width: auto; margin: 0;}
 .ab-menu a.edit { padding: 3px; }
 .tag-menu input, .tag-menu p { margin: 0; padding: 0}
-ul.ab-menu { list-style: none; }
+ul.ab-menu {
+    list-style: none inside none;
+}
 li.menu-item, .tag-category { white-space: nowrap; padding: 0 5px 0 0; }
 .tag-categorizer span.delete-icon { display: inline; float: none; vertical-align: middle; }
 
