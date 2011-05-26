@@ -21,9 +21,9 @@ span.adder-icon:hover {
 
 span.delete-icon {
     vertical-align: bottom;
-    background: url(../images/close-small-dark.png) no-repeat;
+    background: url(close-small-dark.png) no-repeat;
 }
 span.delete-icon:hover {
-    background: url(../images/close-small-hover.png) no-repeat;
+    background: url(close-small-hover.png) no-repeat;
 }
 
