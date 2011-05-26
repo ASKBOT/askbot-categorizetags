@@ -1670,9 +1670,12 @@ DropDown.prototype.scheduleOpening = function(){
  * sets the timeout to close the dropdown
  */
 DropDown.prototype.scheduleClosing = function(){
+    console.log('scheduling closing the tag menu');
     if (this._is_frozen){
+        console.log('frozen, give up')
         return;
     }
+    console.log('not frozen')
     clearTimeout(this._start_opening_timeout);//stop opening too
     var me = this;
     this._close_timeout = setTimeout(
