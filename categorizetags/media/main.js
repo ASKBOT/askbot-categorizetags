@@ -1610,7 +1610,7 @@ DropDown.prototype.createDom = function(){
 
     var me = this;
     this._element.mouseenter(function(){ me.stopClosing() });
-    this._element.mouseleave(function(){ me.scheduleClosing(); });
+    this._element.mouseleave(function(){ me.close(); });
     this.stopEventPropagation(['click']);
 
     $(document).click(function(){
@@ -1738,7 +1738,9 @@ DropDown.prototype.reset = function(){
  * closes the menu
  */
 DropDown.prototype.close = function(){
+    console.log('trying to close dropdown');
     if (this._is_frozen){
+        console.log('dropdown is frozen, cancel action');
         return;
     }
     this.onClose();
