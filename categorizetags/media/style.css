@@ -6,7 +6,7 @@ ul.ab-menu { list-style: none; }
 li.menu-item, .tag-category { white-space: nowrap; padding: 0 5px 0 0; }
 .tag-categorizer span.delete-icon { display: inline; float: none; vertical-align: middle; }
 
-.adder-icon, .go-right-icon .delete-icon {
+.adder-icon, .go-right-icon, .delete-icon {
     padding-left: 13px;
 }
 .go-right-icon {
