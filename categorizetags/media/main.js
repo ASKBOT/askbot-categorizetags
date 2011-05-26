@@ -2399,6 +2399,9 @@ MenuItemAdder.prototype.startAddingItem = function(){
         DISPLAY: function(){
             me.setState('IDLE');
             parent_menu.unfreeze();
+        },
+        EDIT: function(){
+            parent_menu.closeChildren();
         }
     });
     menu_item.setContent(content);
@@ -2568,8 +2571,6 @@ Menu.prototype.setZIndex = function(z_index){
         this._element.css('z-index', z_index);
     }
 };
-
-
 
 /**
  * @param {MenuData} data the category tree data
