@@ -218,7 +218,7 @@ def get_tag_categories(request):
                         )
                 response_data['cats'] = list(
                                 Category.objects.filter(
-                                    tagcategory_set__tag = tag
+                                    tagcategory__tag = tag
                                 ).values(
                                     'id', 'name'
                                 )
@@ -362,7 +362,7 @@ def delete_category(request):
             response_data['status'] = 'need_confirmation'
             response_data['token'] = CategoriesApiTokenGenerator().make_token(node)
             #here!!!
-            response_data['tags'] = [t[0] for t in TAG.objects.filter(tagcategory_set__category = node).values_list('name')]
+            response_data['tags'] = [t[0] for t in TAG.objects.filter(tagcategory__category = node).values_list('name')]
         else:
             # Let any exception that happens during deletion bubble up
             node.tagcategory_set.clear()
