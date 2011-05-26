@@ -17,7 +17,7 @@ from django.utils.translation import ugettext as _
 
 from django.conf import settings as settings
 from categorizetags.utils import CategoriesApiTokenGenerator
-from categorizetags.models import generate_tree
+from categorizetags.models import generate_tree, TagCategory
 
 tmp = __import__(settings.TAG_MODEL_MODULE, globals(), locals(), ['Tag'], -1)
 TAG = tmp.Tag
@@ -82,9 +82,7 @@ def add_category(request):
     # TODO: there is a chance of a race condition here
     if parent:
         try:
-            parent = Category.objects.get(
-                    id=parent
-                )
+            parent = Category.objects.get(id=parent)
         except Category.DoesNotExist:
             raise exceptions.ValidationError(
                 _("Requested parent category doesn't exist")
@@ -121,9 +119,7 @@ def rename_category(request):
     response_data = dict()
     # TODO: there is a chance of a race condition here
     try:
-        node = Category.objects.get(
-                id=cat_id,
-            )
+        node = Category.objects.get(id=cat_id)
     except Category.DoesNotExist:
         raise exceptions.ValidationError(
             _("Requested category doesn't exist")
@@ -170,9 +166,7 @@ def add_tag_to_category(request):
             )
     # TODO: there is a chance of a race condition here
     try:
-        cat = Category.objects.get(
-                id=cat_id
-            )
+        cat = Category.objects.get(id=cat_id)
     except Category.DoesNotExist:
         raise exceptions.ValidationError(
             _("Requested category doesn't exist")
@@ -186,7 +180,8 @@ def add_tag_to_category(request):
             _("Requested tag doesn't exist")
             )
     # Let any exception that could happen during save bubble up
-    tag.categories.add(cat)
+    tag_category = TagCategory(tag = tag, category = cat)
+    tag_category.save()
     response_data = {'status': 'success'}
     data = simplejson.dumps(response_data)
     return HttpResponse(data, mimetype="application/json")
@@ -221,7 +216,13 @@ def get_tag_categories(request):
                     raise exceptions.ValidationError(
                         _("Requested tag doesn't exist")
                         )
-                response_data['cats'] = list(tag.categories.values('id', 'name'))
+                response_data['cats'] = list(
+                                Category.objects.filter(
+                                    tagcategory_set__tag = tag
+                                ).values(
+                                    'id', 'name'
+                                )
+                            )
                 response_data['status'] = 'success'
                 data = simplejson.dumps(response_data)
                 return HttpResponse(data, mimetype="application/json")
@@ -273,18 +274,11 @@ def remove_tag_from_category(request):
                             raise exceptions.ValidationError(
                                 _("Requested category doesn't exist")
                                 )
-                        global TAG
                         try:
-                            tag = TAG.objects.get(name=tag_name)
-                        except TAG.DoesNotExist:
-                            raise exceptions.ValidationError(
-                                _("Requested tag doesn't exist")
-                                )
-                        if cat.tags.filter(id=tag.id).count():
-                            # Let any exception that happens during save bubble up
-                            cat.tags.remove(tag)
+                            tag_category = TagCategory.objects.get(category = cat, tag__name=tag_name)
+                            tag_category.delete()
                             response_data['status'] = 'success'
-                        else:
+                        except TagCategory.DoesNotExist:
                             response_data['status'] = 'noop'
                         data = simplejson.dumps(response_data)
                         return HttpResponse(data, mimetype="application/json")
@@ -355,7 +349,7 @@ def delete_category(request):
                 _("Invalid token provided")
                 )
 
-    tag_count = node.tags.count()
+    tag_count = node.tagcategory_set.count()
     has_children = not node.is_leaf_node()
     if not tag_count and not has_children:
         # Let any exception that happens during deletion bubble up
@@ -367,10 +361,11 @@ def delete_category(request):
         if token is None:
             response_data['status'] = 'need_confirmation'
             response_data['token'] = CategoriesApiTokenGenerator().make_token(node)
-            response_data['tags'] = [t[0] for t in node.tags.values_list('name')]
+            #here!!!
+            response_data['tags'] = [t[0] for t in TAG.objects.filter(tagcategory_set__category = node).values_list('name')]
         else:
             # Let any exception that happens during deletion bubble up
-            node.tags.clear()
+            node.tagcategory_set.clear()
             node.delete()
             response_data['status'] = 'success'
     data = simplejson.dumps(response_data)
