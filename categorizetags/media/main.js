@@ -1850,7 +1850,10 @@ Category.prototype.getSaveEditHandler = function(){
 Category.prototype.startRenaming = function(){
     var new_name = this.getInputBoxText();
     var old_name = this.getText();
-    if (new_name !== '' && new_name !== old_name){
+    if (new_name !== ''){
+        if (new_name === old_name){
+            return;
+        }
         var me = this;
         var success_handler = function(){
             me.setText(new_name);
