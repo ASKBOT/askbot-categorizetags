@@ -1624,12 +1624,17 @@ DropDown.prototype.createDom = function(){
  */
 DropDown.prototype.freeze = function(){
     //use a private attribute...
-    console.log('dropdown frozen');
+    console.log('freezing dropdown');
     this._is_frozen = true;
 };
 DropDown.prototype.unfreeze = function(){
     this._is_frozen = false;
-    console.log('dropdown unfrozen');
+    console.log('unfreezing dropdown');
+};
+DropDown.prototype.isFrozen = function(){
+    var dropdown_status = this._is_frozen === true ? 'frozen': 'not frozen';
+    console.log('dropdown is ' + dropdown_status);
+    return this._is_frozen;
 };
 /**
  * opens the dropdown
@@ -1739,8 +1744,7 @@ DropDown.prototype.reset = function(){
  */
 DropDown.prototype.close = function(){
     console.log('trying to close dropdown');
-    if (this._is_frozen){
-        console.log('dropdown is frozen, cancel action');
+    if (this.isFrozen()){
         return;
     }
     this.onClose();
