@@ -3,7 +3,7 @@
     askbot['data'] = askbot['data'] || {};
     askbot['urls'] = askbot['urls'] || {};
 
-    askbot['data']['categories'] = {% if cats_tree %}[{{ cats_tree }}]{% else %}null{% endif %};
+    askbot['data']['categories'] = {% if cats_tree %}[{{ cats_tree|safe }}]{% else %}null{% endif %};
     askbot['urls']['add_category'] = '{% url add_category %}';
     askbot['urls']['rename_category'] = '{% url rename_category %}';
     askbot['urls']['delete_category'] = '{% url delete_category %}';
