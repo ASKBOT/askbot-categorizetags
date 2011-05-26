@@ -1907,6 +1907,9 @@ Category.prototype.startDeleting = function(on_delete, token){
  */
 Category.prototype.startAddingToDatabase = function(){
     var new_category_name = this.getInputBoxText();
+    if ($.trim(new_category_name) === ''){
+        return;
+    }
     var data = {
         'parent': this.getParent().getId(),
         name: new_category_name 
