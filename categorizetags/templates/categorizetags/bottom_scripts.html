@@ -16,5 +16,7 @@
 <script type="text/javascript" src="/categorizetags_media/main.js"></script>
 <script type="text/javascript">
     init_category_menu({% if request.user.is_staff %}true{% else %}false{% endif %});
-    init_tag_menu();
+    {% if request.user.is_staff %}
+        init_tag_menu();
+    {% endif %}
 </script>
