@@ -2344,7 +2344,13 @@ MenuItemAdder.prototype.createDom = function(){
     this._button = link;
 
     var me = this;
-    setupButtonEventHandlers(link, function(){ me.startAddingItem() });
+    var parent_menu = this._parent_menu;
+    setupButtonEventHandlers(
+        link,
+        function(){
+            parent_menu.closeChildren();
+            me.startAddingItem()
+    });
 
     li.append(link);
     this._element = li;
