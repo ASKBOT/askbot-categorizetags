@@ -2596,7 +2596,7 @@ TagDropDown.prototype.getContent = function(){
 };
 
 var init_tag_menu = function(){
-    $.each($('.tags .tag'), function(idx, item){
+    $.each($('[rel="tag"]'), function(idx, item){
         if (! item.has_tag_menu ){
             var dd = new TagDropDown();
             dd.decorate($(item));
