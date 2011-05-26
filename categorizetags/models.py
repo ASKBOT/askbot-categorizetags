@@ -3,7 +3,7 @@ the Category functionality"""
 from django.db import models
 from categories.models import Category
 from mptt.templatetags.mptt_tags import cache_tree_children
-from django.conf.import settings
+from django.conf import settings
 TAG = __import__(settings.TAG_MODEL)
 
 def generate_tree():
