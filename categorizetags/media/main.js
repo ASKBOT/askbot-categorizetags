@@ -421,7 +421,7 @@ AutoCompleter.prototype.decorate = function(element){
 
 AutoCompleter.prototype.dispose = function(){
     this._results.remove();
-    AutoCompleter.superClass_.dipose.call(this);
+    AutoCompleter.superClass_.dispose.call(this);
 };
 
 AutoCompleter.prototype.setEventHandlers = function(){
