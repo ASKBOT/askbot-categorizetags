@@ -1,5 +1,10 @@
 #ab-drop-down { position: absolute; }
-.ab-menu, .tag-menu { background: #fff; border: 1px solid #aaa; }
+#ab-cats a.edit { padding: 3px; }
+.ab-menu, .tag-menu { 
+    background: #fff;
+    border: 1px solid #aaa;
+    padding: 0 5px;
+}
 .ab-menu input { width: auto;}
 .tag-menu input, .tag-menu p { margin: 0; padding: 0}
 ul.ab-menu { list-style: none; }
