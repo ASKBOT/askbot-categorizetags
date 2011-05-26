@@ -1624,10 +1624,12 @@ DropDown.prototype.createDom = function(){
  */
 DropDown.prototype.freeze = function(){
     //use a private attribute...
+    console.log('dropdown frozen');
     this._is_frozen = true;
 };
 DropDown.prototype.unfreeze = function(){
     this._is_frozen = false;
+    console.log('dropdown unfrozen');
 };
 /**
  * opens the dropdown
@@ -1734,10 +1736,8 @@ DropDown.prototype.reset = function(){
  */
 DropDown.prototype.close = function(){
     if (this._is_frozen){
-        console.log('frozen');
         return;
     }
-    console.log('not frozen');
     this.onClose();
     this.reset();
     this.setState('CLOSED');
