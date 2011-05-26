@@ -1852,6 +1852,7 @@ Category.prototype.startRenaming = function(){
     var old_name = this.getText();
     if (new_name !== ''){
         if (new_name === old_name){
+            this.setState('DISPLAY');
             return;
         }
         var me = this;
