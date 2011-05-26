@@ -1641,6 +1641,7 @@ DropDown.prototype.open = function(){
             my: 'left top',
             at: 'left bottom',
             of: parent_element,
+            collision: 'none none',
         });
         //this.getContent().getElement().show();
         this.setState('OPEN');
@@ -2792,7 +2793,10 @@ Menu.prototype.open = function(){
     if (this.isFrozen()){
         return;
     }
-    var position = {my: 'left top'};
+    var position = {
+        my: 'left top',
+        collision: 'none none'
+    };
     if (this.isRoot()){
         position['at'] = 'left bottom';
         position['of'] = this._root_element;
