@@ -1609,8 +1609,8 @@ DropDown.prototype.createDom = function(){
     this._element.append(content.getElement());
 
     var me = this;
-    this._element.mouseleave(function(){ me.close(); });
     this._element.mouseenter(function(){ me.stopClosing() });
+    this._element.mouseleave(function(){ me.scheduleClosing(); });
     this.stopEventPropagation(['click']);
 
     $(document).click(function(){
