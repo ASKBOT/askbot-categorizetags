@@ -5,7 +5,7 @@ ul.ab-menu { list-style: none; }
 li.menu-item, .tag-category { white-space: nowrap; padding: 0 5px 0 0; }
 .tag-categorizer span.delete-icon { display: inline; float: none; vertical-align: middle; }
 
-.adder-icon, .go-right-icon {
+.adder-icon, .go-right-icon .delete-icon {
     padding-left: 13px;
 }
 .go-right-icon {
@@ -18,3 +18,12 @@ span.adder-icon {
 span.adder-icon:hover {
     background: url(list-add-14-blue.png) no-repeat;
 }
+
+span.delete-icon {
+    vertical-align: bottom;
+    background: url(../images/close-small-dark.png) no-repeat;
+}
+span.delete-icon:hover {
+    background: url(../images/close-small-hover.png) no-repeat;
+}
+
