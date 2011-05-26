@@ -3160,10 +3160,16 @@ TagCategoryAdder.prototype.createDom = function(){
     this._ac.setOption('onItemSelect', on_item_select);
 };
 
+TagCategoryAdder.prototype.dispose = function(){
+    this._ac.dispose();
+    this._prompt_element.remove();
+    this._input_element.remove();
+    TagCategoryAdder.superClass_.dispose.call(this);
+};
+
 TagCategoryAdder.prototype.blur = function(){
     this._input_element.blur();
     this._input_element.val('');
-    this._ac.dispose();
     if (this._onblur){
         this._onblur();
     }
@@ -3318,6 +3324,15 @@ TagCategorizer.prototype.renderData = function(){
     this._element.append(adder.getElement());
     this._category_adder = adder;
 };
+TagCategorizer.prototype.dispose = function(){
+    if (this._category_adder){
+        this._category_adder.dispose();
+    }
+    if (this._cats){
+        this._cats.dispose();
+    }
+    TagCategorizer.superClass_.dispose.call(this);
+};
 
 /**
  * @constructor
@@ -3335,6 +3350,10 @@ var TagDropDown = function(){
      * @type {?TagData}
      */
     this._tag_data;
+    /**
+     * @type {?TagCategorizer}
+     */
+    this._categorizer = null;
 };
 inherits(TagDropDown, DropDown);
 /**
@@ -3364,8 +3383,16 @@ TagDropDown.prototype.getContent = function(){
         content.addContent(categorizer);
 
         this._content = content;
+        this._categorizer = categorizer;
     }
     return this._content;
+};
+
+TagDropDown.prototype.reset = function(){
+    if (this._categorizer){
+        this._categorizer.dispose();
+    }
+    TagDropDown.superClass_.reset.call(this);
 };
 
 var init_tag_menu = function(){
