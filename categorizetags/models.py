@@ -4,7 +4,7 @@ from django.db import models
 from categories.models import Category
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from askbot.models import Tag
+TAG = __import__(settings.TAG_MODEL)
 
 def generate_tree():
     """
@@ -31,7 +31,8 @@ def _recurse_tree(node):
     return output
 
 class TagCategory(models.Model):
-    tag = models.ForeignKey(Tag)
+    global TAG
+    tag = models.ForeignKey(TAG)
     category = models.ForeignKey(Category)
 
     class Meta:

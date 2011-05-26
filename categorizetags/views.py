@@ -16,10 +16,10 @@ from django.utils import simplejson
 from django.utils.translation import ugettext as _
 
 from django.conf import settings as settings
-from askbot.models import Tag
 from categorizetags.utils import CategoriesApiTokenGenerator
 from categorizetags.models import generate_tree
 
+TAG = __import__(settings.TAG_MODEL)
 
 def admin_ajax_post(view_func):
     """
@@ -176,9 +176,11 @@ def add_tag_to_category(request):
         raise exceptions.ValidationError(
             _("Requested category doesn't exist")
             )
+
+    global TAG
     try:
-        tag = Tag.objects.get(name=tag_name)
-    except Tag.DoesNotExist:
+        tag = TAG.objects.get(name=tag_name)
+    except TAG.DoesNotExist:
         raise exceptions.ValidationError(
             _("Requested tag doesn't exist")
             )
@@ -211,9 +213,10 @@ def get_tag_categories(request):
                     raise exceptions.ValidationError(
                         _("Missing tag_name parameter")
                         )
+                global TAG
                 try:
-                    tag = Tag.objects.get(name=tag_name)
-                except Tag.DoesNotExist:
+                    tag = TAG.objects.get(name=tag_name)
+                except TAG.DoesNotExist:
                     raise exceptions.ValidationError(
                         _("Requested tag doesn't exist")
                         )
@@ -269,9 +272,10 @@ def remove_tag_from_category(request):
                             raise exceptions.ValidationError(
                                 _("Requested category doesn't exist")
                                 )
+                        global TAG
                         try:
-                            tag = Tag.objects.get(name=tag_name)
-                        except Tag.DoesNotExist:
+                            tag = TAG.objects.get(name=tag_name)
+                        except TAG.DoesNotExist:
                             raise exceptions.ValidationError(
                                 _("Requested tag doesn't exist")
                                 )
