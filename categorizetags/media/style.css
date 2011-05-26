@@ -2,8 +2,9 @@
 .ab-menu, .tag-menu { 
     background: #fff;
     border: 1px solid #aaa;
-    padding: 0 0 0 5px;
+    padding: 0 5px;
 }
+.ab-menu { padding-right: 0; }
 .tag-menu {
     padding-bottom: 5px;
     padding-top: 3px;

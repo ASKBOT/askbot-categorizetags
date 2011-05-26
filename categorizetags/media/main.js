@@ -1414,6 +1414,11 @@ EditableString.prototype.getStartEditHandler = function(){
     };
 };
 
+/** override me */
+EditableString.prototype.getTextClickHandler = function(){
+    return function(){};
+};
+
 /**
  * takes an jQuery element, assumes (no error checking)
  * that the element
@@ -1464,6 +1469,8 @@ EditableString.prototype.createDom = function(){
     //build dom for the edit block
 
     this._edit_link = edit_link.getElement();
+
+    this._text_element.click(this.getTextClickHandler());
 
     this._input_box.keydown(
         makeKeyHandler(13, this.getSaveEditHandler())
@@ -1853,6 +1860,14 @@ Category.prototype.getSaveEditHandler = function(){
             me.startAddingToDatabase();
         };
     }
+};
+
+Category.prototype.getTextClickHandler = function(){
+    var me = this;
+    return function(e){
+        var url = '/questions/category/' + me.getName() + '/';
+        window.location.href = url;
+    };
 };
 
 /**

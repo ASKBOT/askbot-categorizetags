@@ -31,6 +31,13 @@ def _recurse_tree(node):
     output['children'] = children
     return output
 
+def get_tags_by_category_name(name):
+    import pdb
+    pdb.set_trace()
+    category = Category.objects.get(name = name)
+    descendants = category.get_descendants(include_self = True)
+    return TAG.objects.filter(tagcategory__category__in = descendants)
+
 class TagCategory(models.Model):
     global TAG
     tag = models.ForeignKey(TAG)
