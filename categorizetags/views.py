@@ -22,6 +22,9 @@ from categorizetags.models import generate_tree, TagCategory
 tmp = __import__(settings.TAG_MODEL_MODULE, globals(), locals(), ['Tag'], -1)
 TAG = tmp.Tag
 
+def user_is_super_or_staff(user):
+    return (user.is_superuser or user.is_staff)
+
 def admin_ajax_post(view_func):
     """
     Decorator for Django views that checks that the request is:
@@ -43,7 +46,7 @@ def admin_ajax_post(view_func):
                 raise exceptions.PermissionDenied(
                     _('Sorry, but anonymous users cannot access this view')
                 )
-            if not request.user.is_administrator():
+            if not user_is_super_or_staff(request.user):
                 raise exceptions.PermissionDenied(
                     _('Sorry, but you cannot access this view')
                 )
@@ -260,7 +263,7 @@ def remove_tag_from_category(request):
         if request.is_ajax():
             if request.method == 'POST':
                 if request.user.is_authenticated():
-                    if request.user.is_administrator() or request.user.is_moderator():
+                    if user_is_super_or_staff(request.user):
                         tag_name = request.POST.get('tag_name')
                         cat_id = request.POST.get('cat_id')
                         if not tag_name or cat_id is None:
@@ -388,7 +391,7 @@ def get_categories(request):
         return HttpResponseForbidden(
             _('Sorry, but anonymous users cannot access this view')
         )
-    if not request.user.is_administrator():
+    if not user_is_super_or_staff(request.user):
         return HttpResponseForbidden(
             _('Sorry, but you cannot access this view')
         )
