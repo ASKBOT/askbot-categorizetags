@@ -11,9 +11,9 @@
     askbot['urls']['add_tag_to_category'] = '{% url add_tag_to_category %}';
     askbot['urls']['remove_tag_from_category'] =  '{% url remove_tag_from_category %}';
 </script>
-<script type="text/javascript" src="/classify_tags_media/jquery.ui.core.js"></script>
-<script type="text/javascript" src="/classify_tags_media/jquery.ui.position.js"></script>
-<script type="text/javascript" src="/classify_tags_media/main.js"></script>
+<script type="text/javascript" src="/categorizetags_media/jquery.ui.core.js"></script>
+<script type="text/javascript" src="/categorizetags_media/jquery.ui.position.js"></script>
+<script type="text/javascript" src="/categorizetags_media/main.js"></script>
 <script type="text/javascript">
     init_category_menu({% if request.user.is_staff %}true{% else %}false{% endif %});
     init_tag_menu();
