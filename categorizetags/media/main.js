@@ -1655,7 +1655,7 @@ DropDown.prototype.open = function(){
             my: 'left top',
             at: 'left bottom',
             of: parent_element,
-            collision: 'none none',
+            collision: 'none none'
         });
         //this.getContent().getElement().show();
         this.setState('OPEN');
@@ -2701,7 +2701,7 @@ Menu.prototype.createMenuItemAdder = function(){
     item_adder.setContentItemCreator(function(){
         var item = me.createContentItem();
         item.setEditable(true);//we do not call this otherwise
-        item.setState('EDIT')
+        item.setState('EDIT');
         item.setParent(me.getParentContentItem());
         return item;
     });
@@ -3477,6 +3477,6 @@ var init_category_menu = function(is_editable){
         useCache: true,
         matchInside: true,
         maxCacheLength: 100,
-        delay: 10,
+        delay: 10
     });
 };
