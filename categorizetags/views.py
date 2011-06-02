@@ -14,6 +14,7 @@ from django.http import (Http404, HttpResponse, HttpResponseRedirect,
         HttpResponseForbidden, HttpResponseNotAllowed)
 from django.utils import simplejson
 from django.utils.translation import ugettext as _
+from django.views.decorators.csrf import csrf_exempt
 
 from django.conf import settings as settings
 from categorizetags.utils import CategoriesApiTokenGenerator
@@ -25,6 +26,7 @@ TAG = tmp.Tag
 def user_is_super_or_staff(user):
     return (user.is_superuser or user.is_staff)
 
+@csrf_exempt
 def admin_ajax_post(view_func):
     """
     Decorator for Django views that checks that the request is:
@@ -243,6 +245,7 @@ def get_tag_categories(request):
         data = simplejson.dumps(response_data)
         return HttpResponse(data, mimetype="application/json")
 
+@csrf_exempt
 def remove_tag_from_category(request):
     """
     Remove a tag from a category it tag belongs to. Meant to be called using ajax

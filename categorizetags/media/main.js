@@ -2844,6 +2844,7 @@ Menu.prototype.open = function(){
     }
     this._element.show();
     this._element.position(position);
+    this._element.position(position);//have to do it twice, no idea why
     var menu_stack = this.getMenuStack();
     menu_stack.push(this);
 
