@@ -191,6 +191,7 @@ def add_tag_to_category(request):
     data = simplejson.dumps(response_data)
     return HttpResponse(data, mimetype="application/json")
 
+@csrf_exempt
 def get_tag_categories(request):
     """
     Get the categories a tag belongs to. Meant to be called using ajax
