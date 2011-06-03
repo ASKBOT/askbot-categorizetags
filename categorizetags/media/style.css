@@ -10,7 +10,10 @@
     padding-top: 3px;
 }
 .ab-menu input { width: auto; margin: 0;}
-.ab-menu a.edit { padding: 3px; }
+.ab-menu a.edit { 
+    padding: 3px;
+    display: inline;
+}
 .tag-menu input, .tag-menu p { margin: 0; padding: 0}
 ul.ab-menu {
     list-style: none inside none;
@@ -20,6 +23,7 @@ li.menu-item, .tag-category { white-space: nowrap; padding: 0 5px 0 0; }
 
 .adder-icon, .go-right-icon, .delete-icon {
     padding-left: 13px;
+    display: inline;
 }
 .go-right-icon {
     vertical-align: middle;
