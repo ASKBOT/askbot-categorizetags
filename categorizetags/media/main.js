@@ -2722,7 +2722,7 @@ Menu.prototype.decorate = function(element, is_root){
     }
     this._is_root = is_root;
     this._root_element = element;//the button which opens the menu
-    $(document).append(this.getElement());//calls this.createDom()
+    $('body').append(this.getElement());//calls this.createDom()
     var me = this;
     this._root_element.mouseover(function(){
         me.open()
