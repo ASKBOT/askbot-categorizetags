@@ -1631,16 +1631,13 @@ DropDown.prototype.createDom = function(){
  */
 DropDown.prototype.freeze = function(){
     //use a private attribute...
-    console.log('freezing dropdown');
     this._is_frozen = true;
 };
 DropDown.prototype.unfreeze = function(){
     this._is_frozen = false;
-    console.log('unfreezing dropdown');
 };
 DropDown.prototype.isFrozen = function(){
     var dropdown_status = this._is_frozen === true ? 'frozen': 'not frozen';
-    console.log('dropdown is ' + dropdown_status);
     return this._is_frozen;
 };
 /**
@@ -1682,12 +1679,9 @@ DropDown.prototype.scheduleOpening = function(){
  * sets the timeout to close the dropdown
  */
 DropDown.prototype.scheduleClosing = function(){
-    console.log('scheduling closing the tag menu');
     if (this._is_frozen){
-        console.log('frozen, give up')
         return;
     }
-    console.log('not frozen')
     clearTimeout(this._start_opening_timeout);//stop opening too
     var me = this;
     this._close_timeout = setTimeout(
@@ -1752,7 +1746,6 @@ DropDown.prototype.reset = function(){
  * closes the menu
  */
 DropDown.prototype.close = function(){
-    console.log('trying to close dropdown');
     if (this.isFrozen()){
         return;
     }
