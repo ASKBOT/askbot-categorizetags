@@ -424,6 +424,17 @@ AutoCompleter.prototype.dispose = function(){
     AutoCompleter.superClass_.dispose.call(this);
 };
 
+AutoCompleter.prototype.updateDataItem = function(key, value){
+    for (var i = 0; i < this.options.data.length; i++){
+        var item = this.options.data[i];
+        if (item['value'] === key){
+            item['data'] = value;
+            return;
+        }
+    }
+    this.options.data.push({value: key, data: value});
+};
+
 AutoCompleter.prototype.setEventHandlers = function(){
     /**
      * Shortcut to self
@@ -1939,6 +1950,10 @@ Category.prototype.startAddingToDatabase = function(){
         me.setId(data['id']);
         me.setState('DISPLAY');
         me.becomeBonaFide();
+        askbot['var']['category_ac'].updateDataItem(
+            new_category_name,
+            [data['id']]
+        );
     };
     $.ajax({
         type: 'POST',
