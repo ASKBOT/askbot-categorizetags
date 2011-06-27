@@ -372,7 +372,7 @@ def delete_category(request):
             response_data['tags'] = [t[0] for t in TAG.objects.filter(tagcategory__category = node).values_list('name')]
         else:
             # Let any exception that happens during deletion bubble up
-            node.tagcategory_set.clear()
+            node.tagcategory_set.all().delete()
             node.delete()
             response_data['status'] = 'success'
     data = simplejson.dumps(response_data)

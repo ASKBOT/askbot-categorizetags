@@ -1659,12 +1659,14 @@ DropDown.prototype.open = function(){
         this.createDom();
         var parent_element = this._parent_element;
         this._element.show();
-        this._element.position({
+        var the_position = {
             my: 'left top',
             at: 'left bottom',
             of: parent_element,
             collision: 'none none'
-        });
+        };
+        this._element.position(the_position);
+        this._element.position(the_position);//why do I have to do this???
         //this.getContent().getElement().show();
         this.setState('OPEN');
     }
